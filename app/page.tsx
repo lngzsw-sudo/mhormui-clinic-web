@@ -1,8 +1,6 @@
 import React from 'react';
-import Link from 'next/link'; // อิมพอร์ต Link สำหรับสลับหน้าแบบความเร็วแสง
-
-// ⚠️ ใส่ลิงก์ URL ของคุณตัวเดิมลงตรงนี้ครับ
-const API_URL = "https://script.google.com/macros/s/AKfycbx19EGUPmjaS2IBStk9MEf0fbRwrffCKdx4SSDXnnA7BQXlQ1xvV3cvKdvtAgyZYdgHiw/exec";
+import Navbar from '@/components/Navbar'; // ดึงเมนูส่วนกลางมาจากโฟลเดอร์ components ด้านนอก
+import { BASE_API_URL } from './api-config'; // ดึงลิงก์ API มาจากไฟล์ตั้งค่าร่วมกัน
 
 interface ServiceItem {
   id: number;
@@ -15,7 +13,8 @@ export default async function Home() {
   let isError = false;
 
   try {
-    const res = await fetch(API_URL, { cache: 'no-store' });
+    // ส่งพารามิเตอร์ ?sheet=Services ไปดึงเฉพาะข้อมูลตารางบริการจาก Google Sheets
+    const res = await fetch(`${BASE_API_URL}?sheet=Services`, { cache: 'no-store' });
     if (!res.ok) throw new Error('Network response was not ok');
     services = await res.json();
   } catch (error) {
@@ -26,31 +25,8 @@ export default async function Home() {
   return (
     <div className="min-h-screen bg-slate-50 text-slate-800 font-sans">
       
-      {/* 1. HEADER & NAVBAR */}
-      <header className="sticky top-0 z-50 bg-white/90 backdrop-blur-md shadow-sm border-b border-slate-100">
-        <div className="max-w-7xl mx-auto px-4 h-20 flex items-center justify-between">
-          <div className="flex items-center space-x-2">
-            <span className="text-2xl font-bold tracking-wider text-teal-600">MhorMui</span>
-            <span className="text-xs uppercase text-slate-400 tracking-widest hidden sm:block">Clinic</span>
-          </div>
-
-          {/* ปรับมาใช้ <Link> เพื่อให้กดสลับหน้าได้จริง */}
-          <nav className="hidden md:flex items-center space-x-8 font-medium text-slate-600">
-            <Link href="/" className="text-teal-600 border-b-2 border-teal-600 pb-1">หน้าแรก</Link>
-            <a href="#" className="hover:text-teal-600 transition">โปรแกรมรักษา</a>
-            <Link href="/articles" className="hover:text-teal-600 transition">สาระความรู้</Link>
-            <a href="#" className="hover:text-teal-600 transition">รีวิว</a>
-            <a href="#" className="hover:text-teal-600 transition">อัตราค่าบริการ</a>
-            <a href="#" className="hover:text-teal-600 transition">ติดต่อเรา</a>
-          </nav>
-
-          <div>
-            <button className="bg-teal-600 hover:bg-teal-700 text-white px-5 py-2.5 rounded-full font-medium shadow-sm transition-all duration-200 transform hover:scale-105">
-              ปรึกษาฟรี! →
-            </button>
-          </div>
-        </div>
-      </header>
+      {/* 1. เรียกใช้งาน NAVBAR (ส่ง path ปัจจุบันไปเพื่อให้เมนูไฮไลต์สีเขียว) */}
+      <Navbar currentPath="/" />
 
       {/* 2. HERO SECTION */}
       <section className="relative bg-gradient-to-r from-teal-50 to-emerald-50/30 py-20 lg:py-32 overflow-hidden">
@@ -85,17 +61,18 @@ export default async function Home() {
           <div className="text-center space-y-3 mb-16">
             <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">คลินิกฝังเข็ม เพิ่มความสูง รักษาโรค</h2>
             <p className="text-teal-200 max-w-2xl mx-auto">
-              คอร์สเพิ่มความสูง ต้อง "หมอหมุ่ยคลินิก" มั่นใจ โดยทีมแพทย์และผู้ชำนาญการเฉพาะทาง
+              คอร์สเพิ่มความสูง ต้อง "หมอหมุยคลินิก" มั่นใจ โดยทีมแพทย์และผู้ชำนาญการเฉพาะทาง
             </p>
           </div>
 
+          {/* ตรวจสอบสถานะการเชื่อมต่อ API หลังบ้าน */}
           {isError ? (
             <div className="text-center py-12 bg-teal-900/50 rounded-2xl border border-teal-700 text-teal-200">
-              เกิดข้อผิดพลาดในการเชื่อมต่อฐานข้อมูล Google Sheets กรุณาตรวจสอบ API_URL
+              เกิดข้อผิดพลาดในการเชื่อมต่อฐานข้อมูล Google Sheets กรุณาตรวจสอบลิงก์ในไฟล์ app/api-config.ts
             </div>
           ) : services.length === 0 ? (
             <div className="text-center py-12 text-teal-300">
-              กำลังโหลดข้อมูลบริการ หรือยังไม่มีข้อมูลในตาราง...
+              กำลังโหลดข้อมูลบริการล่าสุด...
             </div>
           ) : (
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
