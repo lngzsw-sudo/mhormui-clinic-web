@@ -1,12 +1,9 @@
 import React from 'react';
 import { Navbar } from '@/components/Navbar';
-import { BASE_API_URL } from '@/app/api-config'; // 🔗 อิมพอร์ตตัวแปรลิงก์กลางที่ใช้ได้จริงมาแทน
+import { BASE_API_URL } from '@/api-config'; // 🛠️ แก้ไขพาธให้ถูกต้อง (เอา /app ออก)
 
 async function getReviews() {
   try {
-    // ดึงข้อมูลผ่านตัวแปรเดียวกระบอกเดียวกับหน้าอื่นชัวร์ๆ
-    // 💡 โน้ตเพิ่มเติม: ถ้าหน้าอื่นของคุณเรียกใช้ในรูปแบบพ่วงท้ายอื่น เช่น `${BASE_API_URL}/api/config?sheet=...` 
-    // ให้ปรับเปลี่ยนแก้ไขรูปแบบการต่อคำตรงนี้ให้เหมือนหน้า services ได้เลยนะครับ
     const res = await fetch(`${BASE_API_URL}?sheet=Reviews`, { 
       next: { revalidate: 3600 } 
     });
