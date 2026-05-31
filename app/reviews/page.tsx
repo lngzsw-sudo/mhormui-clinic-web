@@ -1,27 +1,25 @@
 import React from 'react';
 import { Navbar } from '@/components/Navbar';
 
-// 1. จำลองฟังก์ชันดึงข้อมูลจาก Google Sheets API (ปรับตามฟังก์ชันหลักของโปรเจกต์คุณได้เลย)
 async function getReviews() {
   try {
-    // ⚠️ เปลี่ยน URL เป็น API Endpoint หรือลิงก์ชีตที่คุณเชื่อมต่อไว้
-    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/config?sheet=reviews`, { 
-      next: { revalidate: 3600 } // ให้รีเฟรชข้อมูลใหม่ทุกๆ 1 ชั่วโมง
+    // ดึงข้อมูลจากแท็บ Reviews ใน Google Sheets ของคุณ
+    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/config?sheet=Reviews`, { 
+      next: { revalidate: 3600 } 
     });
     if (!res.ok) throw new Error('Failed to fetch reviews');
     return res.json();
   } catch (error) {
     console.error(error);
-    return []; // ถ้าพังให้ส่งอาร์เรย์ว่างกลับไปก่อนเว็บจะได้ไม่ล่ม
+    return [];
   }
 }
 
+// ปรับ Interface ให้ตรงกับหัวคอลัมน์ใน Google Sheets เป๊ะๆ
 interface ReviewItem {
   id: string;
-  name: string;
-  comment: string;
-  rating: number;
-  treatment: string;
+  title: string;
+  image: string;
 }
 
 export default async function ReviewsPage() {
@@ -41,36 +39,33 @@ export default async function ReviewsPage() {
           </p>
         </div>
 
-        {/* รายการรีวิวแสดงผลแบบ Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {/* จัดเลย์เอาต์แสดงผลแบบการ์ดรูปภาพ Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {reviews.length > 0 ? (
             reviews.map((item) => (
-              <div key={item.id} className="bg-white rounded-2xl p-6 shadow-sm border border-slate-100 flex flex-col justify-between space-y-4">
-                <div className="space-y-2">
-                  {/* แสดงดาวรีวิว */}
-                  <div className="text-amber-400 flex items-center space-x-1">
-                    {Array.from({ length: item.rating || 5 }).map((_, i) => (
-                      <span key={i} className="text-lg">★</span>
-                    ))}
-                  </div>
-                  {/* ข้อความรีวิว */}
-                  <p className="text-slate-600 leading-relaxed italic">
-                    "{item.comment}"
-                  </p>
+              <div 
+                key={item.id} 
+                className="bg-white rounded-3xl overflow-hidden shadow-sm border border-slate-100 group hover:shadow-md transition duration-300"
+              >
+                {/* โซนพ่นรูปภาพรีวิวที่ดึงจากลิงก์ในชีต */}
+                <div className="relative w-full h-64 bg-slate-100 overflow-hidden">
+                  <img 
+                    src={item.image} 
+                    alt={item.title}
+                    className="w-full h-full object-cover group-hover:scale-105 transition duration-500"
+                    loading="lazy"
+                  />
                 </div>
-
-                <div className="pt-4 border-t border-slate-100 flex items-center justify-between text-xs">
-                  <span className="font-bold text-slate-900">{item.name}</span>
-                  {item.treatment && (
-                    <span className="bg-teal-50 text-teal-700 px-2 py-1 rounded-md font-medium">
-                      {item.treatment}
-                    </span>
-                  )}
+                
+                {/* โซนข้อความหัวข้อรีวิว */}
+                <div className="p-6">
+                  <h3 className="font-bold text-slate-800 text-lg leading-relaxed">
+                    {item.title}
+                  </h3>
                 </div>
               </div>
             ))
           ) : (
-            // บล็อกข้อความจำลองกรณีที่ยังไม่มีข้อมูลในชีต
             <div className="col-span-full text-center py-12 text-slate-400">
               กำลังโหลดข้อมูลรีวิว หรือยังไม่มีข้อมูลในระบบ...
             </div>
