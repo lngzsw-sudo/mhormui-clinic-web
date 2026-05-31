@@ -11,7 +11,7 @@ export default function ContactPage() {
           <div className="text-slate-600 space-y-4 leading-relaxed">
             <div>
               <p className="font-bold text-slate-800 text-lg">📍 ที่อยู่คลินิก:</p>
-              <p className="mt-1">1414 ซอย อินทามระ 26/2 ถนน สุทธิสารวินิจฉัย แขวงดินแดง เขตดินแดง กรุงเทพฯ 10400</p>
+              <p className="mt-1">36/3 ถ.บางลี่-หนองวัลย์เปรียง​ ต.สองพี่น้อง​ อ.สองพี่น้อง​ จ.สุพรรณบุรี​0889145199</p>
             </div>
             <div>
               <p className="font-bold text-slate-800 text-lg">⏰ วัน/เวลา ทำการ:</p>

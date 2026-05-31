@@ -3,7 +3,7 @@ import React from 'react';
 export function FloatingContact() {
   // ⚠️ เปลี่ยนเป็นลิงก์จริงของ หมอหมุ่ยคลินิก ได้เลยครับ
   // รูปแบบลิงก์ LINE OA: https://lin.ee/XXXXXXX หรือ LINE ส่วนตัว: https://line.me/ti/p/~ไอดีไลน์
-  const LINE_URL = "https://line.me/ti/p/~YOUR_LINE_ID"; 
+  const LINE_URL = "https://line.me/ti/p/~@969gymdr"; 
   
   // รูปแบบลิงก์ Messenger: https://m.me/ชื่อยูสเซอร์เนมเพจ
   const MESSENGER_URL = "https://m.me/Mhormui";
