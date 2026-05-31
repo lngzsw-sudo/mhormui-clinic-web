@@ -1,29 +1,73 @@
 import React from 'react';
-import { Navbar } from '@/components/Navbar'; // 1. เติมปีกกาครอบ Navbar
+import { Navbar } from '@/components/Navbar';
 
 export default function ContactPage() {
   return (
     <div className="min-h-screen bg-slate-50 text-slate-800 font-sans">
       <Navbar currentPath="/contact" />
-      <main className="max-w-5xl mx-auto px-4 py-12 grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-        <div className="space-y-6">
-          <h1 className="text-3xl font-bold text-slate-900">ติดต่อ หมอหมุยคลินิก</h1>
-          <div className="text-slate-600 space-y-4 leading-relaxed">
-            <div>
-              <p className="font-bold text-slate-800 text-lg">📍 ที่อยู่คลินิก:</p>
-              <p className="mt-1">36/3 ถ.บางลี่-หนองวัลย์เปรียง​ ต.สองพี่น้อง​ อ.สองพี่น้อง​ จ.สุพรรณบุรี​0889145199</p>
-            </div>
-            <div>
-              <p className="font-bold text-slate-800 text-lg">⏰ วัน/เวลา ทำการ:</p>
-              <p className="mt-1">อังคาร - อาทิตย์ : 09:00 - 19:00 น. <span className="text-rose-500 font-semibold">(หยุดทุกวันจันทร์)</span></p>
+      
+      <main className="max-w-6xl mx-auto px-4 py-12">
+        <div className="bg-white rounded-3xl p-8 md:p-12 shadow-sm border border-slate-100 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+          
+          {/* ข้อมูลการติดต่อฝั่งซ้าย */}
+          <div className="space-y-6">
+            <h1 className="text-3xl font-bold text-slate-900 tracking-tight">ติดต่อ หมอหมุ่ยคลินิก</h1>
+            
+            <div className="text-slate-600 space-y-4 leading-relaxed">
+              
+              {/* ที่อยู่ */}
+              <div className="bg-teal-50/50 p-5 rounded-2xl border border-teal-100/50">
+                <p className="font-bold text-teal-800 text-lg flex items-center gap-2">
+                  📍 ที่อยู่คลินิก
+                </p>
+                <p className="mt-1 text-slate-700 font-medium">
+                  36/3 ถ.บางลี่-หนองวัลย์เปรียง ต.สองพี่น้อง อ.สองพี่น้อง จ.สุพรรณบุรี 72110
+                </p>
+              </div>
+
+              {/* เบอร์โทรศัพท์ (กดโทรออกได้ทันที) */}
+              <div className="bg-sky-50/50 p-5 rounded-2xl border border-sky-100/50">
+                <p className="font-bold text-sky-800 text-lg flex items-center gap-2">
+                  📞 เบอร์โทรศัพท์ติดต่อ
+                </p>
+                <a 
+                  href="tel:0889145199" 
+                  className="mt-1 inline-block text-slate-700 font-bold text-xl hover:text-sky-600 transition"
+                >
+                  088-9145199
+                </a>
+                <span className="block text-xs text-slate-400 mt-1">*บนมือถือสามารถคลิกที่เบอร์เพื่อโทรออกได้ทันที</span>
+              </div>
+
+              {/* เวลาทำการ */}
+              <div className="bg-amber-50/50 p-5 rounded-2xl border border-amber-100/50">
+                <p className="font-bold text-amber-800 text-lg flex items-center gap-2">
+                  ⏰ วัน/เวลา ทำการ
+                </p>
+                <p className="mt-1 text-slate-700 font-medium">
+                  อังคาร - อาทิตย์ : 09:00 - 19:00 น. 
+                  <span className="block text-rose-500 font-bold mt-1">(หยุดทุกวันจันทร์)</span>
+                </p>
+              </div>
+              
             </div>
           </div>
-        </div>
-        <div className="bg-slate-100 h-80 rounded-3xl overflow-hidden shadow-inner flex items-center justify-center text-slate-400 font-medium border-4 border-white">
-          <div className="p-4 text-center space-y-2">
-            <p className="text-slate-500 font-semibold">📍 แผนที่กูเกิลแมพส์ (Google Maps)</p>
-            <p className="text-xs text-slate-400">ระบบจำลองพื้นที่สำหรับฝัง iframe แผนที่จริงบนหน้าจอดิสเพลย์</p>
+
+          {/* แผนที่กูเกิลแมพส์พิกัด อำเภอสองพี่น้อง สุพรรณบุรี ฝั่งขวา */}
+          <div className="w-full h-[350px] md:h-[450px] rounded-3xl overflow-hidden shadow-md border-4 border-white relative">
+            <iframe 
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3864.8431872147776!2d100.0416954!3d14.3789456!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x30e2338db76b1f2b%3A0x6b3b555e55555555!2z4LiB4Li54LiZ4Li04LiB4LiX4Liy4LiH4LiB4Liy4Lij4Lil4Li14LmILeC4q-C4meC4reC4h-C4p-C4seC4peC5jOC5gOC4m-C4o-C4teC4p-C5gOC4quC4teC5iOC4leC5gQ!5e0!3m2!1sth!2sth!4v1717145500000!5m2!1sth!2sth"
+              width="100%" 
+              height="100%" 
+              style={{ border: 0 }} 
+              allowFullScreen={true} 
+              loading="lazy" 
+              referrerPolicy="no-referrer-when-downgrade"
+              title="แผนที่ หมอหมุ่ยคลินิก สุพรรณบุรี"
+              className="absolute inset-0"
+            ></iframe>
           </div>
+
         </div>
       </main>
     </div>
