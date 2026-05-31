@@ -1,6 +1,6 @@
 import React from 'react';
 import Navbar from '@/components/Navbar'; // ดึงเมนูส่วนกลางมาจากโฟลเดอร์ components ด้านนอก
-import { BASE_API_URL } from './api-config'; // ดึงลิงก์ API มาจากไฟล์ตั้งค่าร่วมกัน
+import { BASE_API_URL } from '../api-config'; // ดึงลิงก์ API มาจากไฟล์ตั้งค่าร่วมกัน
 
 interface ServiceItem {
   id: number;
