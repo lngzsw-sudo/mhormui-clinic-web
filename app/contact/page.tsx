@@ -7,7 +7,7 @@ export default function ContactPage() {
       <Navbar currentPath="/contact" />
       <main className="max-w-5xl mx-auto px-4 py-12 grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
         <div className="space-y-6">
-          <h1 className="text-3xl font-bold text-slate-900">ติดต่อ หมอหมุ่ยคลินิก</h1>
+          <h1 className="text-3xl font-bold text-slate-900">ติดต่อ หมอหมุยคลินิก</h1>
           <div className="text-slate-600 space-y-4 leading-relaxed">
             <div>
               <p className="font-bold text-slate-800 text-lg">📍 ที่อยู่คลินิก:</p>
