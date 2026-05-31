@@ -2,6 +2,14 @@ import React from 'react';
 import { Navbar } from '@/components/Navbar'; // 1. เติมปีกกาครอบ Navbar
 import { BASE_API_URL } from '../../api-config';
 
+import { Metadata } from 'next'; // เพิ่มการอิมพอร์ต Metadata
+
+// 📝 เพิ่มบล็อก SEO ตรงนี้ครับ
+export const metadata: Metadata = {
+  title: "โปรแกรมการรักษา ฝังเข็ม ครอบแก้ว | หมอหมุยคลินิก สุพรรณบุรี",
+  description: "รวมบริการรักษาโรคด้วยศาสตร์แพทย์แผนจีน ฝังเข็ม กระตุ้นไฟฟ้า ครอบแก้ว เดินแก้ว บำบัดอาการปวดเรื้อรัง ออฟฟิศซินโดรม อย่างปลอดภัย",
+};
+
 export default async function ServicesPage() {
   let services = [];
   try {

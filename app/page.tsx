@@ -36,8 +36,9 @@ export default async function Home() {
               การฝังเข็มกระตุ้นการการทำงานของร่างกาย <span className="text-teal-600">รักษาโรค</span>
             </h1>
             <p className="text-lg text-slate-600 leading-relaxed">
-              การฝังเข็มโดยแพทย์จีน กระตุ้นการทำงานของร่างกายและปรับสมดุลเส้นลมปราณ และบำรุงอวัยวะภายใน
-            </p>
+  การฝังเข็มบำบัดและฟื้นฟูร่างกาย โดยแพทย์จีน ชำนาญการฝังเข็มตามเส้นลมปราณเพื่อปรับสมดุลและบำรุงอวัยวะภายใน 
+  <span className="block mt-2 text-teal-700 font-medium text-base">📍 พร้อมให้บริการชาวอำเภอสองพี่น้อง และจังหวัดสุพรรณบุรี</span>
+</p>
             <div className="pt-2">
               <button className="bg-teal-600 hover:bg-teal-700 text-white px-8 py-3.5 rounded-xl font-semibold shadow-md transition">
                 ดูรายละเอียดเพิ่มเติม

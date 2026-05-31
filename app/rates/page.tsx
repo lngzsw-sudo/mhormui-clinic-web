@@ -1,6 +1,12 @@
 import React from 'react';
 import { Navbar } from '@/components/Navbar'; // 1. เติมปีกกาครอบ Navbar
 import { BASE_API_URL } from '../../api-config';
+import { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: "อัตราค่าบริการ ฝังเข็มแพทย์แผนจีน ราคามาตรฐาน | หมอหมุยคลินิก สุพรรณบุรี",
+  description: "เช็กราคาค่าบริการฝังเข็ม ครอบแก้ว และโปรแกรมการรักษาโรค คลินิกสะอาด ปลอดภัย โปร่งใส ไม่มีค่าใช้จ่ายแอบแฝง",
+};
 
 export default async function RatesPage() {
   let rates = [];

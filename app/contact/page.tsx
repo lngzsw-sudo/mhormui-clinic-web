@@ -1,5 +1,12 @@
 import React from 'react';
 import { Navbar } from '@/components/Navbar';
+import { Metadata } from 'next'; 
+
+// 📝 เพิ่มบล็อก SEO ตรงนี้ครับ
+export const metadata: Metadata = {
+  title: "ติดต่อเรา แผนที่ เบอร์โทรศัพท์พิกัดสองพี่น้อง | หมอหมุยคลินิก สุพรรณบุรี",
+  description: "หมอหมุ่ยคลินิกแพทย์แผนจีน ตั้งอยู่บนถนนบางลี่-หนองวัลย์เปรียง อ.สองพี่น้อง จ.สุพรรณบุรี โทร 088-9145199 เช็กเวลาทำการและแผนที่นำทางได้ที่นี่",
+};
 
 export default function ContactPage() {
   return (
