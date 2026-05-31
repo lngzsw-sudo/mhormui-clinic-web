@@ -1,5 +1,5 @@
 import React from 'react';
-import Navbar from '@/components/Navbar'; // ดึงเมนูส่วนกลางมาจากโฟลเดอร์ components ด้านนอก
+import { Navbar } from '@/components/Navbar'; //  เติมปีกกาครอบแบบนี้ครับ เพื่อนำเข้าให้ถูกตัว
 import { BASE_API_URL } from '../api-config'; // ดึงลิงก์ API มาจากไฟล์ตั้งค่าร่วมกัน
 
 interface ServiceItem {

@@ -1,5 +1,5 @@
 import React from 'react';
-import Navbar from '@/components/Navbar';
+import { Navbar } from '@/components/Navbar'; // 1. เติมปีกกาครอบ Navbar
 import { BASE_API_URL } from '../../api-config';
 
 interface ArticleItem {
