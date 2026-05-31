@@ -1,9 +1,9 @@
 import React from 'react';
+import Link from 'next/link'; // อิมพอร์ต Link สำหรับสลับหน้าแบบความเร็วแสง
 
-// ⚠️ สำคัญมาก: นำลิงก์ URL ที่คุณก๊อปปี้มาจาก Google Apps Script (ที่ลงท้ายด้วย /exec) มาวางแทนที่เครื่องหมายคำพูดด้านล่างนี้ครับ
-const API_URL = "https://script.googleusercontent.com/macros/echo?user_content_key=AUkAhnS1A-Q2DeLsmolScNpfbXhoNrWhx95iUhzE_5hwZjtV5GupBil6lCClXNopYB5kiFO_LJYSzI-eSGxjjwnKZJlnJfIk41WmpXpizrO4AbSaH8WuP1Asi02CFeirCOqrcVx3JVbbXCLshJGpMswZef0iA7qF18FuUE6Ou030t2ykxfQG5mel8_S-J2HhWly2areYS4vHAaGsOzWIdDjyQV1vxrG1ko3DGefYKwN9KGdgiRl-oxDbRJ4__WXT_8Zs6PLPZVOweAF_Q2-LKDtUFzWv9sJQFw&lib=MxY-TxczUkLsCsbYwOJwfXTi6PhGDX-sR";
+// ⚠️ ใส่ลิงก์ URL ของคุณตัวเดิมลงตรงนี้ครับ
+const API_URL = "https://script.google.com/macros/s/AKfycbx19EGUPmjaS2IBStk9MEf0fbRwrffCKdx4SSDXnnA7BQXlQ1xvV3cvKdvtAgyZYdgHiw/exec";
 
-// กำหนดโครงสร้างข้อมูลให้ TypeScript เข้าใจ
 interface ServiceItem {
   id: number;
   title: string;
@@ -15,7 +15,6 @@ export default async function Home() {
   let isError = false;
 
   try {
-    // ดึงข้อมูลจาก Google Sheets API แบบไม่เก็บแคชเพื่อความสดใหม่ของข้อมูล ({ cache: 'no-store' })
     const res = await fetch(API_URL, { cache: 'no-store' });
     if (!res.ok) throw new Error('Network response was not ok');
     services = await res.json();
@@ -35,10 +34,11 @@ export default async function Home() {
             <span className="text-xs uppercase text-slate-400 tracking-widest hidden sm:block">Clinic</span>
           </div>
 
+          {/* ปรับมาใช้ <Link> เพื่อให้กดสลับหน้าได้จริง */}
           <nav className="hidden md:flex items-center space-x-8 font-medium text-slate-600">
-            <a href="#" className="text-teal-600 border-b-2 border-teal-600 pb-1">หน้าแรก</a>
+            <Link href="/" className="text-teal-600 border-b-2 border-teal-600 pb-1">หน้าแรก</Link>
             <a href="#" className="hover:text-teal-600 transition">โปรแกรมรักษา</a>
-            <a href="#" className="hover:text-teal-600 transition">สาระความรู้</a>
+            <Link href="/articles" className="hover:text-teal-600 transition">สาระความรู้</Link>
             <a href="#" className="hover:text-teal-600 transition">รีวิว</a>
             <a href="#" className="hover:text-teal-600 transition">อัตราค่าบริการ</a>
             <a href="#" className="hover:text-teal-600 transition">ติดต่อเรา</a>
@@ -79,7 +79,7 @@ export default async function Home() {
         </div>
       </section>
 
-      {/* 3. SERVICES GRID SECTION (ดึงข้อมูลจาก Sheets มาแสดงผล) */}
+      {/* 3. SERVICES GRID SECTION */}
       <section className="py-20 bg-teal-800 text-white">
         <div className="max-w-7xl mx-auto px-4">
           <div className="text-center space-y-3 mb-16">
@@ -89,7 +89,6 @@ export default async function Home() {
             </p>
           </div>
 
-          {/* ตรวจสอบว่าระบบมีปัญหาการดึงข้อมูลหรือไม่ */}
           {isError ? (
             <div className="text-center py-12 bg-teal-900/50 rounded-2xl border border-teal-700 text-teal-200">
               เกิดข้อผิดพลาดในการเชื่อมต่อฐานข้อมูล Google Sheets กรุณาตรวจสอบ API_URL
@@ -99,7 +98,6 @@ export default async function Home() {
               กำลังโหลดข้อมูลบริการ หรือยังไม่มีข้อมูลในตาราง...
             </div>
           ) : (
-            /* เมื่อดึงข้อมูลสำเร็จ ข้อมูลจะลูปตามจำนวนแถวใน Google Sheets ทันที */
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
               {services.map((service) => (
                 <div 
