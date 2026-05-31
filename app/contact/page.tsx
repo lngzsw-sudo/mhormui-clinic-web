@@ -55,17 +55,7 @@ export default function ContactPage() {
 
           {/* แผนที่กูเกิลแมพส์พิกัด อำเภอสองพี่น้อง สุพรรณบุรี ฝั่งขวา */}
           <div className="w-full h-[350px] md:h-[450px] rounded-3xl overflow-hidden shadow-md border-4 border-white relative">
-            <iframe 
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3864.8431872147776!2d100.0416954!3d14.3789456!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x30e2338db76b1f2b%3A0x6b3b555e55555555!2z4LiB4Li54LiZ4Li04LiB4LiX4Liy4LiH4LiB4Liy4Lij4Lil4Li14LmILeC4q-C4meC4reC4h-C4p-C4seC4peC5jOC5gOC4m-C4o-C4teC4p-C5gOC4quC4teC5iOC4leC5gQ!5e0!3m2!1sth!2sth!4v1717145500000!5m2!1sth!2sth"
-              width="100%" 
-              height="100%" 
-              style={{ border: 0 }} 
-              allowFullScreen={true} 
-              loading="lazy" 
-              referrerPolicy="no-referrer-when-downgrade"
-              title="แผนที่ หมอหมุ่ยคลินิก สุพรรณบุรี"
-              className="absolute inset-0"
-            ></iframe>
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3867.3924002395484!2d100.03129837592225!3d14.23031688603331!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x30e251977e4daf43%3A0xd958cfe78f6b33a0!2z4Lir4Lih4Lit4Lir4Lih4Li44Lii4LiE4Lil4Li04LiZ4Li04LiB4LmB4Lie4LiX4Lii4LmM4LmB4Lic4Lii4LiI4Li14LiZIOC4neC4seC4h-C5gOC4guC5h-C4oSDguKLguLLguIjguLXguJkg4LiZ4Lin4LiU4LiX4Li44Lii4Lir4LiZ4LiyIOC4o-C4oeC4ouC4siDguIHguLHguKfguIvguLI!5e0!3m2!1sth!2sth!4v1780207768380!5m2!1sth!2sth" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
           </div>
 
         </div>
