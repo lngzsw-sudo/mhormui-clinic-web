@@ -1,21 +1,23 @@
 import React from 'react';
 import { Navbar } from '@/components/Navbar';
+import { BASE_API_URL } from '@/app/api-config'; // 🔗 อิมพอร์ตตัวแปรลิงก์กลางที่ใช้ได้จริงมาแทน
 
 async function getReviews() {
   try {
-    // ดึงข้อมูลจากแท็บ Reviews ใน Google Sheets ของคุณ
-    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/config?sheet=Reviews`, { 
+    // ดึงข้อมูลผ่านตัวแปรเดียวกระบอกเดียวกับหน้าอื่นชัวร์ๆ
+    // 💡 โน้ตเพิ่มเติม: ถ้าหน้าอื่นของคุณเรียกใช้ในรูปแบบพ่วงท้ายอื่น เช่น `${BASE_API_URL}/api/config?sheet=...` 
+    // ให้ปรับเปลี่ยนแก้ไขรูปแบบการต่อคำตรงนี้ให้เหมือนหน้า services ได้เลยนะครับ
+    const res = await fetch(`${BASE_API_URL}?sheet=Reviews`, { 
       next: { revalidate: 3600 } 
     });
     if (!res.ok) throw new Error('Failed to fetch reviews');
     return res.json();
   } catch (error) {
-    console.error(error);
+    console.error("Error fetching reviews:", error);
     return [];
   }
 }
 
-// ปรับ Interface ให้ตรงกับหัวคอลัมน์ใน Google Sheets เป๊ะๆ
 interface ReviewItem {
   id: string;
   title: string;
@@ -39,15 +41,13 @@ export default async function ReviewsPage() {
           </p>
         </div>
 
-        {/* จัดเลย์เอาต์แสดงผลแบบการ์ดรูปภาพ Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {reviews.length > 0 ? (
+          {reviews && reviews.length > 0 ? (
             reviews.map((item) => (
               <div 
                 key={item.id} 
                 className="bg-white rounded-3xl overflow-hidden shadow-sm border border-slate-100 group hover:shadow-md transition duration-300"
               >
-                {/* โซนพ่นรูปภาพรีวิวที่ดึงจากลิงก์ในชีต */}
                 <div className="relative w-full h-64 bg-slate-100 overflow-hidden">
                   <img 
                     src={item.image} 
@@ -56,8 +56,6 @@ export default async function ReviewsPage() {
                     loading="lazy"
                   />
                 </div>
-                
-                {/* โซนข้อความหัวข้อรีวิว */}
                 <div className="p-6">
                   <h3 className="font-bold text-slate-800 text-lg leading-relaxed">
                     {item.title}
