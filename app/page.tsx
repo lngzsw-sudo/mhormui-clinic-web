@@ -33,10 +33,10 @@ export default async function Home() {
         <div className="max-w-7xl mx-auto px-4 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           <div className="space-y-6 max-w-xl">
             <h1 className="text-4xl sm:text-5xl font-extrabold text-slate-900 leading-tight">
-              การฝังเข็มกระตุ้นการเจริญเติบโต <span className="text-teal-600">รักษาโรค</span>
+              การฝังเข็มกระตุ้นการการทำงานของร่างกาย <span className="text-teal-600">รักษาโรค</span>
             </h1>
             <p className="text-lg text-slate-600 leading-relaxed">
-              การฝังเข็มกระตุ้นการเจริญเติบโตเป็นการกระตุ้นโกรทฮอร์โมน (Growth Hormone) โดยแพทย์จีน จะฝังเข็มตามเส้นลมปราณเพื่อปรับสมดุล และบำรุงอวัยวะภายใน
+              การฝังเข็มโดยแพทย์จีน กระตุ้นการทำงานของร่างกายและปรับสมดุลเส้นลมปราณ และบำรุงอวัยวะภายใน
             </p>
             <div className="pt-2">
               <button className="bg-teal-600 hover:bg-teal-700 text-white px-8 py-3.5 rounded-xl font-semibold shadow-md transition">
