@@ -59,9 +59,9 @@ export default async function Home() {
       <section className="py-20 bg-teal-800 text-white">
         <div className="max-w-7xl mx-auto px-4">
           <div className="text-center space-y-3 mb-16">
-            <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">คลินิกฝังเข็ม เพิ่มความสูง รักษาโรค</h2>
+            <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">หมอหมุยคลินิก ฝังเข็มปรับสมดุล รักษาโรค</h2>
             <p className="text-teal-200 max-w-2xl mx-auto">
-              คอร์สเพิ่มความสูง ต้อง "หมอหมุยคลินิก" มั่นใจ โดยทีมแพทย์และผู้ชำนาญการเฉพาะทาง
+              กระตุ้นการทำงานของร่างกายและปรับสมดุลเส้นลมปราณ มั่นใจในการดูแลอย่างตรงจุดโดยแพทย์แผนจีนชำนาญการ
             </p>
           </div>
 
