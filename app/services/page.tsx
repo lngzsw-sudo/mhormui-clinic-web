@@ -1,6 +1,7 @@
 import React from 'react';
 import { Navbar } from '@/components/Navbar'; // 1. เติมปีกกาครอบ Navbar
 import { BASE_API_URL } from '../../api-config';
+import { Footer } from '@/components/Footer'; // นำเข้า Footer เรียบร้อยครับ
 
 import { Metadata } from 'next'; // เพิ่มการอิมพอร์ต Metadata
 
@@ -41,6 +42,7 @@ export default async function ServicesPage() {
           ))}
         </div>
       </main>
+      <Footer />
     </div>
   );
 }

@@ -1,6 +1,14 @@
 import React from 'react';
-import { Navbar } from '@/components/Navbar'; //  เติมปีกกาครอบแบบนี้ครับ เพื่อนำเข้าให้ถูกตัว
+import { Navbar } from '@/components/Navbar'; 
 import { BASE_API_URL } from '../api-config'; // ดึงลิงก์ API มาจากไฟล์ตั้งค่าร่วมกัน
+import { Footer } from '@/components/Footer'; // นำเข้า Footer เรียบร้อยครับ
+import { Metadata } from 'next';
+
+// 📝 1. เติมค่า Metadata ประจำหน้าแรกเพื่อเพิ่มคะแนน SEO ดันอันดับบน Google
+export const metadata: Metadata = {
+  title: "หมอหมุยคลินิกแพทย์แผนจีน | ฝังเข็ม ครอบแก้ว สองพี่น้อง สุพรรณบุรี",
+  description: "หมอหมุยคลินิก ฝังเข็มบำบัด รักษาโรค และปรับสมดุลร่างกายด้วยศาสตร์แพทย์แผนจีน ปลอดภัย ได้มาตรฐาน พร้อมดูแลชาวอำเภอสองพี่น้อง จังหวัดสุพรรณบุรี",
+};
 
 interface ServiceItem {
   id: number;
@@ -13,7 +21,6 @@ export default async function Home() {
   let isError = false;
 
   try {
-    // ส่งพารามิเตอร์ ?sheet=Services ไปดึงเฉพาะข้อมูลตารางบริการจาก Google Sheets
     const res = await fetch(`${BASE_API_URL}?sheet=Services`, { cache: 'no-store' });
     if (!res.ok) throw new Error('Network response was not ok');
     services = await res.json();
@@ -25,20 +32,20 @@ export default async function Home() {
   return (
     <div className="min-h-screen bg-slate-50 text-slate-800 font-sans">
       
-      {/* 1. เรียกใช้งาน NAVBAR (ส่ง path ปัจจุบันไปเพื่อให้เมนูไฮไลต์สีเขียว) */}
+      {/* NAVBAR */}
       <Navbar currentPath="/" />
 
-      {/* 2. HERO SECTION */}
+      {/* HERO SECTION */}
       <section className="relative bg-gradient-to-r from-teal-50 to-emerald-50/30 py-20 lg:py-32 overflow-hidden">
         <div className="max-w-7xl mx-auto px-4 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           <div className="space-y-6 max-w-xl">
             <h1 className="text-4xl sm:text-5xl font-extrabold text-slate-900 leading-tight">
-              การฝังเข็มกระตุ้นการการทำงานของร่างกาย <span className="text-teal-600">รักษาโรค</span>
+              การฝังเข็มกระตุ้นการทำงานของร่างกาย <span className="text-teal-600">รักษาโรค</span>
             </h1>
             <p className="text-lg text-slate-600 leading-relaxed">
-  การฝังเข็มบำบัดและฟื้นฟูร่างกาย โดยแพทย์จีน ชำนาญการฝังเข็มตามเส้นลมปราณเพื่อปรับสมดุลและบำรุงอวัยวะภายใน 
-  <span className="block mt-2 text-teal-700 font-medium text-base">📍 พร้อมให้บริการชาวอำเภอสองพี่น้อง และจังหวัดสุพรรณบุรี</span>
-</p>
+              การฝังเข็มบำบัดและฟื้นฟูร่างกาย โดยแพทย์จีน ชำนาญการฝังเข็มตามเส้นลมปราณเพื่อปรับสมดุลและบำรุงอวัยวะภายใน 
+              <span className="block mt-2 text-teal-700 font-medium text-base">📍 พร้อมให้บริการชาวอำเภอสองพี่น้อง และจังหวัดสุพรรณบุรี</span>
+            </p>
             <div className="pt-2">
               <button className="bg-teal-600 hover:bg-teal-700 text-white px-8 py-3.5 rounded-xl font-semibold shadow-md transition">
                 ดูรายละเอียดเพิ่มเติม
@@ -56,7 +63,7 @@ export default async function Home() {
         </div>
       </section>
 
-      {/* 3. SERVICES GRID SECTION */}
+      {/* SERVICES GRID SECTION */}
       <section className="py-20 bg-teal-800 text-white">
         <div className="max-w-7xl mx-auto px-4">
           <div className="text-center space-y-3 mb-16">
@@ -66,7 +73,6 @@ export default async function Home() {
             </p>
           </div>
 
-          {/* ตรวจสอบสถานะการเชื่อมต่อ API หลังบ้าน */}
           {isError ? (
             <div className="text-center py-12 bg-teal-900/50 rounded-2xl border border-teal-700 text-teal-200">
               เกิดข้อผิดพลาดในการเชื่อมต่อฐานข้อมูล Google Sheets กรุณาตรวจสอบลิงก์ในไฟล์ app/api-config.ts
@@ -99,11 +105,14 @@ export default async function Home() {
         </div>
       </section>
 
-      {/* 4. FLOATING CONTACT BUTTONS */}
+      {/* FLOATING CONTACT BUTTONS */}
       <div className="fixed bottom-6 right-6 flex flex-col space-y-3 z-50">
         <a href="#" className="bg-[#06C755] text-white p-3.5 rounded-full shadow-lg hover:scale-110 transition text-center font-bold text-sm">LINE</a>
         <a href="#" className="bg-[#1877F2] text-white p-3.5 rounded-full shadow-lg hover:scale-110 transition text-center font-bold text-sm">FB</a>
       </div>
+
+      {/* 🛠️ 2. วางแท็ก Footer ปิดท้ายเนื้อหาตรงนี้ได้อย่างถูกต้องสวยงามครับ */}
+      <Footer />
 
     </div>
   );

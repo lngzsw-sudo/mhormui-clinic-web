@@ -3,6 +3,8 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { FloatingContact } from "@/components/FloatingContact"; // 1. อิมพอร์ตปุ่มลอยเข้ามา
 
+
+
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
@@ -20,17 +22,52 @@ export const metadata: Metadata = {
 
 export default function RootLayout({
   children,
-}: Readonly<{
+}: {
   children: React.ReactNode;
-}>) {
-  return (
-    <html
-      lang="en"
-      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
-    >
-      <body className="min-h-full flex flex-col">{children}
+}) {
+  // ชุดข้อมูล Schema สำหรับบอท Google Search
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "MedicalBusiness",
+    "name": "หมอหมุ่ยคลินิกแพทย์แผนจีน",
+    "image": "https://hmormui.com/favicon.ico",
+    "@id": "https://hmormui.com",
+    "url": "https://hmormui.com",
+    "telephone": "088-9145199",
+    "priceRange": "฿฿",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "36/3 ถ.บางลี่-หนองวัลย์เปรียง ต.สองพี่น้อง",
+      "addressLocality": "อำเภอสองพี่น้อง",
+      "addressRegion": "จังหวัดสุพรรณบุรี",
+      "postalCode": "72110",
+      "addressCountry": "TH"
+    },
+    "openingHoursSpecification": {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": [
+        "Tuesday",
+        "Wednesday",
+        "Thursday",
+        "Friday",
+        "Saturday",
+        "Sunday"
+      ],
+      "opens": "09:00",
+      "closes": "19:00"
+    }
+  };
 
-      <FloatingContact />  
+  return (
+    <html lang="th">
+      <body>
+        {/* 📝 เพิ่มสคริปต์ฝังข้อมูล SEO ส่งให้ Google ตรงนี้ครับ */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
+        
+        {children}
       </body>
     </html>
   );

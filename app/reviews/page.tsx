@@ -1,6 +1,7 @@
 import React from 'react';
 import { Navbar } from '@/components/Navbar';
 import { BASE_API_URL } from '@/api-config'; // 🛠️ แก้ไขพาธให้ถูกต้อง (เอา /app ออก)
+import { Footer } from '@/components/Footer'; // นำเข้า Footer เรียบร้อยครับ
 
 async function getReviews() {
   try {
@@ -67,6 +68,7 @@ export default async function ReviewsPage() {
           )}
         </div>
       </main>
+      <Footer />
     </div>
   );
 }

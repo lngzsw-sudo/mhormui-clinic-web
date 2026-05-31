@@ -2,6 +2,7 @@ import React from 'react';
 import { Navbar } from '@/components/Navbar'; // 1. เติมปีกกาครอบ Navbar
 import { BASE_API_URL } from '../../api-config';
 import { Metadata } from 'next';
+import { Footer } from '@/components/Footer'; // นำเข้า Footer เรียบร้อยครับ
 
 export const metadata: Metadata = {
   title: "อัตราค่าบริการ ฝังเข็มแพทย์แผนจีน ราคามาตรฐาน | หมอหมุยคลินิก สุพรรณบุรี",
@@ -34,6 +35,7 @@ export default async function RatesPage() {
           ))}
         </div>
       </main>
+      <Footer />
     </div>
   );
 }

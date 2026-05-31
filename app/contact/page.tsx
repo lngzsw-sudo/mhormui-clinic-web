@@ -1,6 +1,7 @@
 import React from 'react';
 import { Navbar } from '@/components/Navbar';
 import { Metadata } from 'next'; 
+import { Footer } from '@/components/Footer'; // นำเข้า Footer เรียบร้อยครับ
 
 // 📝 เพิ่มบล็อก SEO ตรงนี้ครับ
 export const metadata: Metadata = {
@@ -76,6 +77,7 @@ export default function ContactPage() {
 
         </div>
       </main>
+      <Footer />
     </div>
   );
 }
