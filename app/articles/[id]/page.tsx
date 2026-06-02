@@ -1,12 +1,12 @@
 import React from 'react';
 import { Navbar } from '@/components/Navbar';
 import { Footer } from '@/components/Footer';
-import { BASE_API_URL } from '../../../api-config'; // 🔗 แก้ไขพิกัดถอยออก 3 ชั้นให้เจอไฟล์นอกสุดพอดี
+import { BASE_API_URL } from '../../../api-config'; // 🔗 พิกัดถอยออก 3 ชั้นเจอไฟล์นอกสุดพอดี
 import { Metadata } from 'next';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 
-export const revalidate = 3600;
+export const dynamic = 'force-dynamic'; // บังคับดึงข้อมูลสดใหม่เสมอ ป้องกันบั๊กหน้าขาวค้างตอน Build
 
 interface ArticleItem {
   id: number | string;
@@ -18,7 +18,7 @@ interface ArticleItem {
 
 async function getArticles(): Promise<ArticleItem[]> {
   try {
-    const res = await fetch(`${BASE_API_URL}?sheet=Articles`);
+    const res = await fetch(`${BASE_API_URL}?sheet=Articles`, { cache: 'no-store' });
     return res.ok ? await res.json() : [];
   } catch (error) {
     console.error("Error fetching articles:", error);
@@ -26,18 +26,11 @@ async function getArticles(): Promise<ArticleItem[]> {
   }
 }
 
-export async function generateStaticParams() {
+export async function generateMetadata({ params }: { params: any }): Promise<Metadata> {
+  const resolvedParams = typeof params.then === 'function' ? await params : params;
+  const id = resolvedParams?.id;
   const articles = await getArticles();
-  return articles.map((article) => ({
-    id: article.id.toString(),
-  }));
-}
-
-// 🛠️ ปรับปรุงให้รับค่า params เป็นแบบ Promise ตามมาตรฐาน Next.js ปัจจุบัน
-export async function generateMetadata({ params }: { params: Promise<{ id: string }> }): Promise<Metadata> {
-  const { id } = await params; // ✨ ถอดรหัส id ออกมาแบบ Async
-  const articles = await getArticles();
-  const article = articles.find((item) => item.id.toString() === id);
+  const article = articles.find((item) => item.id.toString() === id?.toString());
   
   return {
     title: article ? `${article.title} | หมอหมุยคลินิค` : "บทความสุขภาพ | หมอหมุยคลินิค",
@@ -45,10 +38,13 @@ export async function generateMetadata({ params }: { params: Promise<{ id: strin
   };
 }
 
-export default async function ArticleDetailPage({ params }: { params: Promise<{ id: string }> }) {
-  const { id } = await params; // ✨ เติม await ตรงนี้เพื่อแก้บั๊กอาการกดไม่ไป ค้างหน้าเดิม
+export default async function ArticleDetailPage({ params }: { params: any }) {
+  // รองรับการแกะค่าพารามิเตอร์แบบปลอดภัยทั้ง Next.js 14 และ 15
+  const resolvedParams = typeof params.then === 'function' ? await params : params;
+  const id = resolvedParams?.id;
+
   const articles = await getArticles();
-  const article = articles.find((item) => item.id.toString() === id);
+  const article = articles.find((item) => item.id.toString() === id?.toString());
 
   if (!article) {
     notFound();
