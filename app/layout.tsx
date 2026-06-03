@@ -30,9 +30,9 @@ export default function RootLayout({
     "@context": "https://schema.org",
     "@type": "MedicalBusiness",
     "name": "หมอหมุ่ยคลินิกแพทย์แผนจีน",
-    "image": "https://hmormui.com/favicon.ico",
-    "@id": "https://hmormui.com",
-    "url": "https://hmormui.com",
+    "image": "https://mhormui.com/favicon.ico", // ✨ แก้โดเมนตรงนี้
+    "@id": "https://mhormui.com",               // ✨ แก้โดเมนตรงนี้
+    "url": "https://mhormui.com",               // ✨ แก้โดเมนตรงนี้
     "telephone": "088-9145199",
     "priceRange": "฿฿",
     "address": {

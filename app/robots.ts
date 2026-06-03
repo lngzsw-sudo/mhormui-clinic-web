@@ -6,6 +6,6 @@ export default function robots(): MetadataRoute.Robots {
       userAgent: '*',
       allow: '/',
     },
-    sitemap: 'https://hmormui.com/sitemap.xml',
+    sitemap: 'https://mhormui.com/sitemap.xml', // ✨ แก้โดเมนตรงนี้
   };
 }

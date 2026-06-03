@@ -2,7 +2,7 @@ import { MetadataRoute } from 'next';
 import { BASE_API_URL } from '../api-config'; // ดึงพิกัด API เพื่อไปขอรายชื่อบทความ
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const baseUrl = 'https://hmormui.com';
+  const baseUrl = 'https://mhormui.com';
 
   // 1. กำหนดแผนที่หน้าหลักทั้งหมดของเว็บไซต์
   const staticRoutes = ['', '/services', '/rates', '/reviews', '/articles', '/contact'].map(
