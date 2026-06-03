@@ -18,6 +18,10 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "หมอหมุยคลินิก ฝังเข็ม เพิ่มความสูง รักษาโรค",
   description: "คอร์สเพิ่มความสูง กระตุ้นโกรทฮอร์โมน ปรับสมดุลร่างกายด้วยศาสตร์แพทย์แผนจีน โดยทีมแพทย์ผู้ชำนาญการ",
+  // ✨ เพิ่มบล็อกยืนยันตัวตน Google ตรงนี้ครับ
+  verification: {
+    google: 'USfItctwfpAviaDYSsxahD7Yg8fU506ppoCf54w3v2U',
+  },
 };
 
 export default function RootLayout({
