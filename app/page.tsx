@@ -105,10 +105,27 @@ export default async function Home() {
         </div>
       </section>
 
-      {/* FLOATING CONTACT BUTTONS */}
+{/* FLOATING CONTACT BUTTONS */}
       <div className="fixed bottom-6 right-6 flex flex-col space-y-3 z-50">
-        <a href="#" className="bg-[#06C755] text-white p-3.5 rounded-full shadow-lg hover:scale-110 transition text-center font-bold text-sm">LINE</a>
-        <a href="#" className="bg-[#1877F2] text-white p-3.5 rounded-full shadow-lg hover:scale-110 transition text-center font-bold text-sm">FB</a>
+        {/* ลิงก์ไปยัง LINE Official */}
+        <a 
+          href="https://line.me/R/ti/p/@969gymdr" 
+          target="_blank"
+          rel="noopener noreferrer"
+          className="bg-[#06C755] text-white w-14 h-14 flex items-center justify-center rounded-full shadow-lg hover:scale-110 transition font-bold text-sm"
+        >
+          LINE
+        </a>
+        
+        {/* ลิงก์ไปยัง Facebook Page */}
+        <a 
+          href="https://www.facebook.com/Mhormui/" 
+          target="_blank"
+          rel="noopener noreferrer"
+          className="bg-[#1877F2] text-white w-14 h-14 flex items-center justify-center rounded-full shadow-lg hover:scale-110 transition font-bold text-sm"
+        >
+          FB
+        </a>
       </div>
 
       {/* 🛠️ 2. วางแท็ก Footer ปิดท้ายเนื้อหาตรงนี้ได้อย่างถูกต้องสวยงามครับ */}
