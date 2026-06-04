@@ -26,15 +26,48 @@ async function getArticles(): Promise<ArticleItem[]> {
   }
 }
 
+// แก้ไขฟังก์ชัน generateMetadata ให้รองรับระบบ Dynamic OG Tags สำหรับแชร์ลง LINE / Facebook
 export async function generateMetadata({ params }: { params: any }): Promise<Metadata> {
   const resolvedParams = typeof params.then === 'function' ? await params : params;
   const id = resolvedParams?.id;
   const articles = await getArticles();
   const article = articles.find((item) => item.id.toString() === id?.toString());
   
+  // กำหนดค่า Default เผื่อกรณีที่ดึงข้อมูลบทความไม่เจอ
+  const defaultTitle = "บทความสุขภาพ | หมอหมุยคลินิค";
+  const defaultDesc = "สาระความรู้แพทย์แผนจีน บำบัดรักษาโรคอย่างตรงจุด บทความโดยหมอหมุยคลินิค";
+  const defaultImage = "/images/default-share-cover.jpg"; // ⚠️ สามารถเปลี่ยนเป็น Path รูปโลโก้คลินิกของคุณที่มีอยู่ในโปรเจกต์ได้ครับ
+
+  const finalTitle = article ? `${article.title} | หมอหมุยคลินิค` : defaultTitle;
+  const finalDesc = article ? article.description : defaultDesc;
+  const finalImage = article ? article.image : defaultImage;
+
   return {
-    title: article ? `${article.title} | หมอหมุยคลินิค` : "บทความสุขภาพ | หมอหมุยคลินิค",
-    description: article ? article.description : "สาระความรู้แพทย์แผนจีน บำบัดรักษาโรคอย่างตรงจุด บมความโดยหมอหมุยคลินิค",
+    title: finalTitle,
+    description: finalDesc,
+    
+    // ตั้งค่าสำหรับการแชร์ลง LINE, Facebook, และ Social Media อื่นๆ (Open Graph)
+    openGraph: {
+      title: finalTitle,
+      description: finalDesc,
+      type: 'article',
+      images: [
+        {
+          url: finalImage,
+          width: 1200,
+          height: 630,
+          alt: article ? article.title : defaultTitle,
+        },
+      ],
+    },
+    
+    // ตั้งค่าสำหรับการแชร์ลง Twitter / X
+    twitter: {
+      card: 'summary_large_image',
+      title: finalTitle,
+      description: finalDesc,
+      images: [finalImage],
+    },
   };
 }
 
